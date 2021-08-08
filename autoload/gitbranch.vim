@@ -34,7 +34,8 @@ function! gitbranch#dir(path) abort
     elseif type ==# 'file'
       let reldir = get(readfile(dir), 0, '')
       if reldir =~# '^gitdir: '
-        return simplify(path . '/' . reldir[8:])
+        " NOTE: on windows the path is an absolute path for me
+        return reldir[8:]
       endif
     endif
     let prev = path
